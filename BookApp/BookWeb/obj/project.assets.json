@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Projects\\E-CommerceApp\\BookApp\\BookApp\\BookApp.csproj",
-      "projectName": "BookApp",
-      "projectPath": "F:\\Projects\\E-CommerceApp\\BookApp\\BookApp\\BookApp.csproj",
+      "projectUniqueName": "F:\\Projects\\E-CommerceApp\\BookApp\\BookWeb\\BookWeb.csproj",
+      "projectName": "BookWeb",
+      "projectPath": "F:\\Projects\\E-CommerceApp\\BookApp\\BookWeb\\BookWeb.csproj",
       "packagesPath": "C:\\Users\\IT-Shamim\\.nuget\\packages\\",
-      "outputPath": "F:\\Projects\\E-CommerceApp\\BookApp\\BookApp\\obj\\",
+      "outputPath": "F:\\Projects\\E-CommerceApp\\BookApp\\BookWeb\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\IT-Shamim\\AppData\\Roaming\\NuGet\\NuGet.Config",
