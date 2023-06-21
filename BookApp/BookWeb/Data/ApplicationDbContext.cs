@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BookWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookWeb.Data
 {
@@ -8,5 +9,6 @@ namespace BookWeb.Data
         {
 
         }
+        public DbSet<Category> Categories { get; set; }
     }
 }
