@@ -16,5 +16,9 @@ namespace BookWeb.Controllers
             IList<Category> categoryList = _db.Categories.ToList();
             return View(categoryList);
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
     }
 }
