@@ -6,15 +6,15 @@
             <h2>Category List</h2>
         </div>
         <div class="col-6 text-primary text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-primary mb-2"><i class="bi bi-plus-circle p-2"></i>Create New Category</a>
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary mb-2 p-2"><i class="bi bi-plus-circle p-2"></i>Create New Category</a>
         </div>
     </div>
     <table class="table table-bordered table-striped">
-        <thead>
+        <thead >
             <tr>
-                <th>Category Name</th>
-                <th>DisplayOrder</th>
-                <th>ID</th>
+                <th class="text-black font-weight-bold py-3">Category Name</th>
+                <th class="text-black font-weight-bold py-3">DisplayOrder</th>
+                <th class="text-black font-weight-bold py-3">ID</th>
             </tr>
         </thead>
         <tbody>
@@ -22,9 +22,9 @@
             @foreach (var obj in Model.OrderBy(O => O.DisplayOrder))
             {
                 <tr>
-                    <td>@obj.Name</td>
-                    <td>@obj.DisplayOrder</td>
-                    <td>@obj.Id</td>
+                    <td class="py-2">@obj.Name</td>
+                    <td class="py-2">@obj.DisplayOrder</td>
+                    <td class ="py-2">@obj.Id</td>
                 </tr>
             }
 
