@@ -40,5 +40,32 @@ namespace BookApp.Controllers
             return View();
         }
 
+        public IActionResult Edit(int? id)
+        {
+            if(id == null || id == 0) { 
+                return NotFound();
+            }
+            Category obj = _context.Categories.FirstOrDefault(i => i.Id == id);
+            Category obj1 = _context.Categories.Find(id);
+            Category obj2 = _context.Categories.Where(i => i.Id == id).FirstOrDefault();
+            if(obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public IActionResult Edit(Category obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Update(obj);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
     }
 }
