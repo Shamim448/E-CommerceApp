@@ -24,6 +24,10 @@ namespace BookApp.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
+            Category categoryFormdb  = _context.Categories.FirstOrDefault(n => n.Name == obj.Name || n.DisplayOrder == obj.DisplayOrder );
+            if (categoryFormdb.Name == obj.Name || categoryFormdb.DisplayOrder == obj.DisplayOrder) {
+                ModelState.AddModelError("", "Name or  Displayorder can not be duplicate");
+            }
             if (obj.Name == obj.DisplayOrder.ToString()) {
                 ModelState.AddModelError("name", "Name and Display order candot be same");
             }
