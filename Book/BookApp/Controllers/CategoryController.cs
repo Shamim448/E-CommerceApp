@@ -1,6 +1,7 @@
 ﻿using BookApp.Data;
 using BookApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BookApp.Controllers
@@ -65,6 +66,34 @@ namespace BookApp.Controllers
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? obj = _context.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public IActionResult DeleteCategory(int? id)
+        {
+            Category? obj = _context.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _context.Categories.Remove(obj);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
     }
