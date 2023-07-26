@@ -25,8 +25,8 @@ namespace BookApp.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            Category categoryFormdb  = _context.Categories.FirstOrDefault(n => n.Name == obj.Name || n.DisplayOrder == obj.DisplayOrder );
-            if (categoryFormdb.Name == obj.Name || categoryFormdb.DisplayOrder == obj.DisplayOrder) {
+            Category? categoryFormdb  = _context.Categories.FirstOrDefault(n => n.Name == obj.Name || n.DisplayOrder == obj.DisplayOrder );
+            if (categoryFormdb != null) {
                 ModelState.AddModelError("", "Name or  Displayorder can not be duplicate");
             }
             if (obj.Name == obj.DisplayOrder.ToString()) {
@@ -60,6 +60,7 @@ namespace BookApp.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(Category obj)
         {
+            //need to implement duplicate value check
             if (ModelState.IsValid)
             {
                 _context.Categories.Update(obj);
