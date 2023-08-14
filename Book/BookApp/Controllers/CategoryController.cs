@@ -1,6 +1,7 @@
 ﻿using BookApp.Data;
 using BookApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace BookApp.Controllers
@@ -24,8 +25,8 @@ namespace BookApp.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
-            Category categoryFormdb  = _context.Categories.FirstOrDefault(n => n.Name == obj.Name || n.DisplayOrder == obj.DisplayOrder );
-            if (categoryFormdb.Name == obj.Name || categoryFormdb.DisplayOrder == obj.DisplayOrder) {
+            Category? categoryFormdb  = _context.Categories.FirstOrDefault(n => n.Name == obj.Name || n.DisplayOrder == obj.DisplayOrder );
+            if (categoryFormdb != null) {
                 ModelState.AddModelError("", "Name or  Displayorder can not be duplicate");
             }
             if (obj.Name == obj.DisplayOrder.ToString()) {
@@ -35,6 +36,7 @@ namespace BookApp.Controllers
             {
                 _context.Categories.Add(obj);
                 _context.SaveChanges();
+                TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index");
             }
             return View();
@@ -58,13 +60,44 @@ namespace BookApp.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public IActionResult Edit(Category obj)
         {
+            //need to implement duplicate value check
             if (ModelState.IsValid)
             {
                 _context.Categories.Update(obj);
                 _context.SaveChanges();
+                TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index");
             }
             return View();
+        }
+
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? obj = _context.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public IActionResult DeleteCategory(int? id)
+        {
+            Category? obj = _context.Categories.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            _context.Categories.Remove(obj);
+            _context.SaveChanges();
+            TempData["success"] = "Category deleted successfully";
+            return RedirectToAction("Index");
         }
 
     }
