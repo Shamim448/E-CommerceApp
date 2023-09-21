@@ -1,0 +1,276 @@
+﻿@model MasterCRUD.Web.Models.ApplicantModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<!-- custom css -->
+@section Styles{
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    }
+
+<h1>Create</h1>
+
+<h4>ApplicantModel</h4>
+<hr />
+<section id="about-sc" class="">
+    <div class="container">
+        <div class="row">
+            <div class="about-cnt">
+                <form asp-action="Create" class="cv-form" id="cv-form">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <a data-toggle="collapse" data-target="#about-sec"
+                               aria-expanded="false" aria-controls="about-sec">
+                                <h3>about section</h3>
+                            </a>
+                        </div>
+                        <div class="cv-form-row cv-form-row-about collapse" id="about-sec">
+                            <div class="cols-3">
+
+                                <div class="form-elem">
+                                    <label asp-for="FName" for="" class="form-label"></label>
+                                    <input asp-for="FName" class="form-control" />
+                                    <span asp-validation-for="FName" class="text-danger"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label asp-for="MName" class="control-label"></label>
+                                    <input asp-for="MName" class="form-control" />
+                                    <span asp-validation-for="MName" class="text-danger"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label asp-for="LName" class="control-label"></label>
+                                    <input asp-for="LName" class="form-control" />
+                                    <span asp-validation-for="LName" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="cols-3">
+                                <div class="form-elem">
+                                    <label asp-for="Designation" class="control-label"></label>
+                                    <input asp-for="Designation" class="form-control" />
+                                    <span asp-validation-for="Designation" class="text-danger"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label asp-for="Address" class="control-label"></label>
+                                    <input asp-for="Address" class="form-control" />
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="cols-3">
+                                <div class="form-elem">
+                                    <label asp-for="PhoneNo" class="control-label"></label>
+                                    <input asp-for="PhoneNo" class="form-control" />
+                                    <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                                </div>
+                                <div class="form-elem">
+                                    <label asp-for="Summary" class="control-label"></label>
+                                    <input asp-for="Summary" class="form-control" />
+                                    <span asp-validation-for="Summary" class="text-danger"></span>
+                                </div>
+                                <div class="form-elem btn-group">
+                                    <div class="form-group col-8">
+                                        <label asp-for="ProfilePhoto" class="control-label"></label>
+                                        <div class="custom-file">
+                                            <input asp-for="ProfilePhoto" class="custom-file-input" id="customFi1e"
+                                                   onchange="document.getElementById('PreviewPhoto').src=window.URL.createObjectURL(this.files[0])" />
+                                            <label class="custom-file-label" for="customFi1e">Choose file</label>
+                                        </div>
+                                        <span asp-validation-for="ProfilePhoto" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="form-group col-4">
+                                        <img id="PreviewPhoto" src="~/images/noimage.png" alt="Logo Image" ;
+                                             width="125" height-"125" style="border:lpx ;margin-top:20px;" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                   
+                    <div class="cv-form-blk">
+                        <div class="cv-form-row-title">
+                            <a data-toggle="collapse" data-target="#education-sec"
+                               aria-expanded="false" aria-controls="education-sec">
+                                <h3>education</h3>
+                            </a>
+
+                        </div>
+                        <div class="row-separator repeater collapse" id="education-sec">
+                            <div class="repeater" data-repeater-list="group-c">
+                                            @*  <div data-repeater-item> *@
+                                <div class="cv-form-row cv-form-row-experience">
+                                                @*  @foreach(var item in Model.Educations) *@
+                                                @for (int i = 0; i < Model.Educations.Count; i++)
+                                                {
+                                                    @* <div class="cols-3"> *@
+                                        <div class="form-group">
+                                                        @Html.LabelFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "control-label"}})
+                                                        @Html.EditorFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "form-control"}})
+                                                        @Html.ValidationMessageFor(x=> x.Educations[i].Institution, "", new {@class = "text-danger"})
+
+                                        </div>
+                                        <div class="form-group">
+                                                        @Html.LabelFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "control-label"}})
+                                                        @Html.EditorFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "form-control"}})
+                                                        @Html.ValidationMessageFor(x=> x.Educations[i].Degree, "", new {@class = "text-danger"})
+                                        </div>
+                                        <div class="form-group">
+                                                        @Html.LabelFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "control-label"}})
+                                                        @Html.EditorFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "form-control"}})
+                                                        @Html.ValidationMessageFor(x=> x.Educations[i].City, "", new {@class = "text-danger"})
+                                        </div>
+                                                    @* </div> *@
+                                                    @* <div class="cols-3"> *@
+                                        <div class="form-group">
+                                                        @Html.LabelFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "control-label"}})
+                                                        @Html.EditorFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "form-control"}})
+                                                        @Html.ValidationMessageFor(x=> x.Educations[i].StartDate, "", new {@class = "text-danger"})
+                                        </div>
+                                        <div class="form-group">
+                                                        @Html.LabelFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "control-label"}})
+                                                        @Html.EditorFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "form-control"}})
+                                                        @Html.ValidationMessageFor(x=> x.Educations[i].EndDate, "", new {@class = "text-danger"})
+                                        </div>
+                                        <div class="form-group">
+                                                        @Html.LabelFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "control-label"}})
+                                                        @Html.EditorFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "form-control"}})
+                                                        @Html.ValidationMessageFor(x=> x.Educations[i].Description, "", new {@class = "text-danger"})
+                                        </div>
+                                                    @* </div> *@
+                                                    @* <button data-repeater-delete type="button" class="repeater-remove-btn">-</button> *@
+                                                }
+                                </div>
+                                            @*  </div> *@
+                            </div>
+                                        @* <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button> *@
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="preview-sc mt-2" class="print_area">
+    <div class="container">
+        <div class="preview-cnt">
+            <div class="preview-cnt-l bg-green text-white">
+                <div class="preview-blk">
+                    <div class="preview-image">
+                        <img src="" alt="" id="image_dsp">
+                    </div>
+                    <div class="preview-item preview-item-name">
+                        <span class="preview-item-val fw-6" id="fullname_dsp"></span>
+                    </div>
+                    <div class="preview-item">
+                        <span class="preview-item-val text-uppercase fw-6 ls-1" id="designation_dsp"></span>
+                    </div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>about</h3>
+                    </div>
+                    <div class="preview-blk-list">
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="phoneno_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="email_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="address_dsp"></span>
+                        </div>
+                        <div class="preview-item">
+                            <span class="preview-item-val" id="summary_dsp"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>skills</h3>
+                    </div>
+                    <div class="skills-items preview-blk-list" id="skills_dsp">
+                        <!-- skills list here -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-cnt-r bg-white">
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>Achievements</h3>
+                    </div>
+                    <div class="achievements-items preview-blk-list" id="achievements_dsp"></div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>educations</h3>
+                    </div>
+                    <div class="educations-items preview-blk-list" id="educations_dsp"></div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>experiences</h3>
+                    </div>
+                    <div class="experiences-items preview-blk-list" id="experiences_dsp"></div>
+                </div>
+
+                <div class="preview-blk">
+                    <div class="preview-blk-title">
+                        <h3>projects</h3>
+                    </div>
+                    <div class="projects-items preview-blk-list" id="projects_dsp"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script type="text/javascript">
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
+
+
+
+
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <!-- jquery repeater cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.repeater/1.2.1/jquery.repeater.js" integrity="sha512-bZAXvpVfp1+9AUHQzekEZaXclsgSlAeEnMJ6LfFAvjqYUVZfcuVXeQoN5LhD7Uw0Jy4NCY9q3kbdEXbwhZUmUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- custom js -->
+    <script src="~/assets/js/script.js"></script>
+    <!-- app js -->
+    <script src="~/assets/js/app.js"></script>
+
+
+}
