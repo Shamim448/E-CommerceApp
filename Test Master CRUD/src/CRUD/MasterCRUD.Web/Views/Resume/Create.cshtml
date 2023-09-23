@@ -7,6 +7,7 @@
 @section Styles{
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/main.css">
+    
     }
 
 <h1>Create</h1>
@@ -105,57 +106,51 @@
                             </a>
 
                         </div>
-                        <div class="row-separator repeater collapse" id="education-sec">
-                            <div class="repeater" data-repeater-list="group-c">
-                                            @*  <div data-repeater-item> *@
-                                <div class="cv-form-row cv-form-row-experience">
-                                                @*  @foreach(var item in Model.Educations) *@
-                                                @for (int i = 0; i < Model.Educations.Count; i++)
-                                                {
-                                                    @* <div class="cols-3"> *@
-                                        <div class="form-group">
-                                                        @Html.LabelFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "control-label"}})
-                                                        @Html.EditorFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "form-control"}})
-                                                        @Html.ValidationMessageFor(x=> x.Educations[i].Institution, "", new {@class = "text-danger"})
 
-                                        </div>
-                                        <div class="form-group">
-                                                        @Html.LabelFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "control-label"}})
-                                                        @Html.EditorFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "form-control"}})
-                                                        @Html.ValidationMessageFor(x=> x.Educations[i].Degree, "", new {@class = "text-danger"})
-                                        </div>
-                                        <div class="form-group">
-                                                        @Html.LabelFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "control-label"}})
-                                                        @Html.EditorFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "form-control"}})
-                                                        @Html.ValidationMessageFor(x=> x.Educations[i].City, "", new {@class = "text-danger"})
-                                        </div>
-                                                    @* </div> *@
-                                                    @* <div class="cols-3"> *@
-                                        <div class="form-group">
-                                                        @Html.LabelFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "control-label"}})
-                                                        @Html.EditorFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "form-control"}})
-                                                        @Html.ValidationMessageFor(x=> x.Educations[i].StartDate, "", new {@class = "text-danger"})
-                                        </div>
-                                        <div class="form-group">
-                                                        @Html.LabelFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "control-label"}})
-                                                        @Html.EditorFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "form-control"}})
-                                                        @Html.ValidationMessageFor(x=> x.Educations[i].EndDate, "", new {@class = "text-danger"})
-                                        </div>
-                                        <div class="form-group">
-                                                        @Html.LabelFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "control-label"}})
-                                                        @Html.EditorFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "form-control"}})
-                                                        @Html.ValidationMessageFor(x=> x.Educations[i].Description, "", new {@class = "text-danger"})
-                                        </div>
-                                                    @* </div> *@
-                                                    @* <button data-repeater-delete type="button" class="repeater-remove-btn">-</button> *@
-                                                }
-                                </div>
-                                            @*  </div> *@
-                            </div>
-                                        @* <button type="button" data-repeater-create value="Add" class="repeater-add-btn">+</button> *@
+                        <div class="col-md-12">
+
+                            <table id="ExpTable" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Institution</th>
+                                        <th>Degree</th>
+                                        <th>City</th>
+                                        <th>StartDate</th>
+                                        <th>EndDate</th>
+                                        <th>Description</th>
+                                        <th style="width:50px;"> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.Educations.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@Html.EditorFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td>@Html.EditorFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td>@Html.EditorFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td>@Html.EditorFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td>@Html.EditorFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td>@Html.EditorFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td>
+                                                <button type="button" id="btnadd-@i" class=" btn-primary btm-sm visible"
+                                                        style="width:30px; height:30px; border-radius: 50px;  position:absolute" onclick="AddItem(this)">
+                                                    +
+                                                </button>
+                                                <button type="button" id="btnremove-@i" class="btn-danger btm-sm invisible"
+                                                        style="width:30px; height:30px; border-radius: 50px;  position:absolute" onclick="DeleteItem(this)">
+                                                    -
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>   
+                            </table>
                         </div>
-                    </div>
-
+                        <input type="hidden" id="hdnLastIndex" value="0" />
+                       
+                       
+                    
 
                     <div class="form-group">
                         <input type="submit" value="Create" class="btn btn-primary" />
@@ -257,6 +252,72 @@
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });
+
+        function DeleteItem(btn){
+            $(btn).closest('tr').remove();
+        }
+
+
+        function AddItem(btn) {
+            var table = document.getElementById('ExpTable');
+            var rows = table.getElementsByTagName('tr');
+
+            var rowOuterHtml = rows[rows.length - 1].outerHTML;
+
+            var lastrowIdx = document.getElementById('hdnLastIndex').value;
+            var nextrowIdx = eval(lastrowIdx) + 1;
+
+            document.getElementById('hdnLastIndex').value = nextrowIdx;
+            rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx + '_', '_' + nextrowIdx + '_');
+            rowOuterHtml = rowOuterHtml.replaceAll('[' + lastrowIdx + ']', '[' + nextrowIdx + ']');
+            rowOuterHtml = rowOuterHtml.replaceAll('_' + lastrowIdx, '_' + nextrowIdx);
+
+
+            var newRow = table.insertRow();
+            newRow.innerHTML = rowOuterHtml;
+
+            var btnAddID = btn.id;
+            var btnDeleteid = btnAddID.replaceAll('btnadd', 'btnremove');
+
+            var delbtn = document.getElementById(btnDeleteid);
+            delbtn.classList.add("visible");
+            delbtn.classList.remove("invisible");
+
+            var addbtn = document.getElementById(btnAddID);
+            addbtn.classList.remove("visible");
+            addbtn.classList.add ("invisible" ) ;
+        }
+        
+        // document.addEventListener("DOMContentLoaded", function () {
+        //     const addButton = document.getElementById("btnadd");
+        //     addButton.addEventListener("click", function () {
+        //         const educationBlock = document.querySelector(".cv-form-row-experience");
+        //         const clone = educationBlock.cloneNode(true);
+
+        //         // Clear input values in the cloned block
+        //         const inputFields = clone.querySelectorAll(".form-control");
+        //         inputFields.forEach(function (input) {
+        //             input.value = "";
+        //         });
+
+        //         // Append the cloned block to the parent container
+        //         const parentContainer = document.querySelector(".repeater");
+        //         parentContainer.appendChild(clone);
+
+        //         // Show the remove button for the cloned block
+        //         const removeButton = clone.querySelector("#btnremove");
+        //         removeButton.classList.remove("invisible");
+
+        //         // Attach a click event to the remove button
+        //         removeButton.addEventListener("click", function () {
+        //             parentContainer.removeChild(clone);
+        //         });
+        //     });
+        // });
+
+
+
+
     </script>
 
 

@@ -1,0 +1,54 @@
+﻿ <div class="row-separator repeater collapse" id="education-sec">
+                            <div class="repeater" data-repeater-list="group-c">
+
+                                            @*  <div data-repeater-item> *@
+                                
+                                    @*  @foreach(var item in Model.Educations) *@
+                                    @for (int i = 0; i < Model.Educations.Count; i++)
+                                    {
+                                   @*  <div data-repeater-item> *@
+                                    <div id="edu" class="cv-form-row cv-form-row-experience">
+                                    <div class="cols-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "control-label"}})
+                                            @Html.EditorFor(x=> x.Educations[i].Institution, new { htmlAttributes = new {@class = "form-control"}})
+                                            @Html.ValidationMessageFor(x=> x.Educations[i].Institution, "", new {@class = "text-danger"})
+
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "control-label"}})
+                                            @Html.EditorFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "form-control"}})
+                                            @Html.ValidationMessageFor(x=> x.Educations[i].Degree, "", new {@class = "text-danger"})
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "control-label"}})
+                                            @Html.EditorFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "form-control"}})
+                                            @Html.ValidationMessageFor(x=> x.Educations[i].City, "", new {@class = "text-danger"})
+                                        </div>
+                                    </div> 
+                                    <div class="cols-3">
+                                        <div class="form-group">
+                                            @Html.LabelFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "control-label"}})
+                                            @Html.EditorFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "form-control"}})
+                                            @Html.ValidationMessageFor(x=> x.Educations[i].StartDate, "", new {@class = "text-danger"})
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "control-label"}})
+                                            @Html.EditorFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "form-control"}})
+                                            @Html.ValidationMessageFor(x=> x.Educations[i].EndDate, "", new {@class = "text-danger"})
+                                        </div>
+                                        <div class="form-group">
+                                            @Html.LabelFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "control-label"}})
+                                            @Html.EditorFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "form-control"}})
+                                            @Html.ValidationMessageFor(x=> x.Educations[i].Description, "", new {@class = "text-danger"})
+                                        </div>
+                                    </div>                                         
+                                    </div>
+                                    @* </div> *@ 
+                                    @* <button type="button" id="btnadd" class="btn visible">+</button>
+                                    <button  type="button" id ="btnremove" class="repeater-remove-btn invisible ">-</button>  *@
+                                    }
+                                                                         
+                        </div>
+                            
+                    </div> 
