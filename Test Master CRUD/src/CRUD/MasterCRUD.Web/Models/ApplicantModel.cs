@@ -38,6 +38,8 @@ namespace MasterCRUD.Web.Models
         public string? Summary { get; set; }
 
         public string? PhotoUrl { get; set; }
+
+
         [Required(ErrorMessage ="Please choose the profile  photo")]
         [Display(Name = "Profile Photo")]
         [NotMapped]
