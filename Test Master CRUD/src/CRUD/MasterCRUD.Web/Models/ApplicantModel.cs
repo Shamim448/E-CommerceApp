@@ -37,11 +37,11 @@ namespace MasterCRUD.Web.Models
         [StringLength(300)]
         public string? Summary { get; set; }
 
-        public string PhotoUrl { get; set; }
+        public string? PhotoUrl { get; set; }
         [Required(ErrorMessage ="Please choose the profile  photo")]
         [Display(Name = "Profile Photo")]
         [NotMapped]
-        public IFormFile ProfilePhoto { get; set; }
+        public IFormFile? ProfilePhoto { get; set; }
 
         public IList<EducationModel>? Educations { get; set; } = new List<EducationModel>();
     }

@@ -36,5 +36,13 @@ namespace MasterCRUD.Web.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");    
         }
+
+        public IActionResult ViewCV()
+        {
+            GetSingleCVModel model = new GetSingleCVModel(_context);
+            var applicant = model.GetApplicant();
+
+            return View(applicant);
+        }
     }
 }
