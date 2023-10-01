@@ -11,13 +11,13 @@ namespace MasterCRUD.Web.Models
         {
             _context = context;
         }
-        public ApplicantModel GetApplicant()
-        {
-            ApplicantModel applicant = new ApplicantModel();
-            applicant = _context.Applicants.Find(new Guid("377dbbd5-452b-49fe-510b-08dbc1a956d4"));
-            applicant.Educations = (IList<EducationModel>)_context.Educations.ToList();
-            return applicant;
-        }
+        //public ApplicantModel GetApplicant()
+        //{
+        //    ApplicantModel applicant = new ApplicantModel();
+        //    applicant = _context.Applicants.Find(new Guid("377dbbd5-452b-49fe-510b-08dbc1a956d4"));
+        //    applicant.Educations = (IList<EducationModel>)_context.Educations.ToList();
+        //    return applicant;
+        //}
 
     }
 

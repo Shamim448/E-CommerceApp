@@ -1,6 +1,7 @@
 ﻿using MasterCRUD.Web.Data;
 using MasterCRUD.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MasterCRUD.Web.Controllers
 {
@@ -37,11 +38,10 @@ namespace MasterCRUD.Web.Controllers
             return RedirectToAction("Index");    
         }
 
-        public IActionResult ViewCV()
-        {
-            GetSingleCVModel model = new GetSingleCVModel(_context);
-            var applicant = model.GetApplicant();
-
+        public IActionResult ViewCV(Guid id)
+        {           
+            var applicant = _context.Applicants
+                            .Include(a => a.Educations).Where(e => e.Id == id);
             return View(applicant);
         }
     }
