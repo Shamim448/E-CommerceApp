@@ -1,4 +1,4 @@
-﻿using MasterCRUD.Web.Data;
+﻿ using MasterCRUD.Web.Data;
 using MasterCRUD.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
