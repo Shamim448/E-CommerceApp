@@ -126,11 +126,11 @@
                                     {
                                         <tr>
                                             <td> <input asp-for="@Model.Educations[i].Institution" class="form-control" /> </td>
-                                            <td>@Html.EditorFor(x=> x.Educations[i].Degree, new { htmlAttributes = new {@class = "form-control"}})</td>
-                                            <td>@Html.EditorFor(x=> x.Educations[i].City, new { htmlAttributes = new {@class = "form-control"}})</td>
-                                            <td>@Html.EditorFor(x=> x.Educations[i].StartDate, new { htmlAttributes = new {@class = "form-control"}})</td>
-                                            <td>@Html.EditorFor(x=> x.Educations[i].EndDate, new { htmlAttributes = new {@class = "form-control"}})</td>
-                                            <td>@Html.EditorFor(x=> x.Educations[i].Description, new { htmlAttributes = new {@class = "form-control"}})</td>
+                                            <td> <input asp-for="@Model.Educations[i].Degree" class="form-control" /> </td>
+                                            <td> <input asp-for="@Model.Educations[i].City" class="form-control" /> </td>
+                                            <td> <input asp-for="@Model.Educations[i].StartDate" class="form-control" /> </td>
+                                            <td> <input asp-for="@Model.Educations[i].EndDate" class="form-control" /> </td>
+                                            <td> <input asp-for="@Model.Educations[i].Description" class="form-control" /> </td>
                                             <td>
                                                 <button type="button" id="btnadd-@i" class=" btn-primary btm-sm visible"
                                                         style="width:30px; height:30px; border-radius: 50px;  position:absolute" onclick="AddItem(this)">

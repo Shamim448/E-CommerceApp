@@ -41,7 +41,12 @@ namespace MasterCRUD.Web.Controllers
         public IActionResult ViewCV(Guid id)
         {           
             var applicant = _context.Applicants
-                            .Include(a => a.Educations).Where(e => e.Id == id);
+                            .Include(a => a.Educations).Where(e => e.Id == id).FirstOrDefault();
+            var tem = 2;
+            if(tem == 1)
+            {
+                return View("Template", applicant);
+            }
             return View(applicant);
         }
     }
