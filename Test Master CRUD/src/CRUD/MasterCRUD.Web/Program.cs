@@ -5,6 +5,8 @@ using MasterCRUD.Web.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +24,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
 
+//builder.WebHost.UseUrls("http://*:80");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,6 +33,7 @@ if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
 }
+
 else
 {
     app.UseExceptionHandler("/Home/Error");

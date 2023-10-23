@@ -43,11 +43,16 @@ namespace MasterCRUD.Web.Controllers
             var applicant = _context.Applicants
                             .Include(a => a.Educations).Where(e => e.Id == id).FirstOrDefault();
             var tem = 2;
-            if(tem == 1)
+            ViewBag.SheareLink = $"http://localhost:5024/Resume/ViewCV/{id}?area=resume";
+        
+            if (tem == 1)
             {
                 return View("Template", applicant);
             }
             return View(applicant);
+
         }
+
+
     }
 }
